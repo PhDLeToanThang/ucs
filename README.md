@@ -9,7 +9,8 @@ Bước 1: Sửa và cài các tools cho Ubuntu có giao diện và xrdp remote 
 wget https://raw.githubusercontent.com/PhDLeToanThang/ucs/master/2.7.7/s1_fix_ubuntu.sh && sudo bash s1_fix_ubuntu.sh
 
 **Lưu ý:** Đây là bản cài DNS Public và On-prem nên trước khi triển khai UCs này bạn phải quản lý được.
-- Ubuntu linux 20.04 LTS hoặc 22.04 LTS cần cài dạng Ubuntu Server, nếu cài Ubuntu minimum sẽ cần cài bổ sung: Dockers hoặc Containers)
+- Ubuntu linux 20.04 LTS cần cài dạng Ubuntu Server, nếu cài Ubuntu minimum sẽ cần cài bổ sung: Dockers hoặc Containers)
+- Gói cài BBB 2.7.7 hiện này chỉ support Ubuntu 20.04 LTS.
 - DNS public (thuê tên miền và Quản lý các bản ghi public).
 - DNS Local (Quản trị DNS Server và FWGW / Haproxy Local).
 - Nếu có Haproxy / LBN người Quản trị sẽ cấu hình Config của LBN/ Haproxy cho phép Proxy hoặc NAT Forward từ Firewall.

@@ -4,7 +4,8 @@
 
 - Phiên bản 2024: 2.7.7:
 
-* Yêu  cầu:*
+## Yêu cầu:
+
 - Máy chủ Ubuntu linux version 20.04 LTS,
 - Có quản lý DNS public và kiểm soát các Firewall Gateway, Haproxy Layer 3,4,7.
 - Hoạt động quản lý và vận hành dưới tên miền public, có HTTPs port 80,443. 
@@ -195,4 +196,4 @@ Tham khảo tài liệu: https://docs.bigbluebutton.org/
 7.     Các bộ phận như Kinh Doanh, Thủ Thư, Luật sư quản lý Xuất bản sách, Kế Toán quản lý Chi phí - Doanh thu - Tồn kho và báo cáo kết quả Kinh Doanh sách số của Nhà Trường / Doanh nghiệp phối hợp Quản lý sách số trên Cổng Thương mại điện tử Kinh Doanh sách số.
 8.    Tích hợp với ITSAM giúp Chat, Bot, AI Chat, chuyển đổi Ticket để hỗ trợ Khách hàng thuê dịch vụ hoặc giúp đội Chăm sóc khách hàng dịch vụ thu nhận thông tin hỗ trợ.
 
-![image](https://github.com/PhDLeToanThang/ucs/assets/106635733/bcb8272f-9ef0-4a1c-808d-00bbb5d5913d)
+![image](https://github.com/PhDLeToanThang/ucs/assets/106635733/fc577f0f-8ef4-4107-b9f5-b54f2ce1b269)

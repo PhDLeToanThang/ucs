@@ -79,7 +79,7 @@ Sơ đồ sau đây cung cấp thông tin tổng quan về kiến trúc của m�
 
 - Sự phân tích chức năng giữa front-end và back-end như sau:
 
-#### Giao diện người dùng ```FRONTEND(s)``` :
+#### Giao diện người dùng ```FRONTEND(s)```:
 
 - Nhận sự kiện ```ValidateAuthTokenResp``` để hoàn tất xác thực.
 - Đăng ký và xuất bản bộ sưu tập.
@@ -87,3 +87,93 @@ Sơ đồ sau đây cung cấp thông tin tổng quan về kiến trúc của m�
 - Xử lý hoàn toàn các sự kiện redis của Streamer: Con trỏ, Chú thích, Chia sẻ video bên ngoài.
 - Vẫn yêu cầu các sự kiện ```MeetStarted``` và ```MeetEnded``` để tạo/hủy hàng đợi xử lý sự kiện trong mỗi cuộc họp.
 
+#### Phần phụ trợ ```BACKEND(s)```:
+
+- Xử lý tất cả các sự kiện không phải của người phát trực tuyến.
+- Nếu có nhiều hơn một chương trình phụ trợ đang chạy, bbb-web sẽ phân chia tải theo kiểu vòng tròn bằng cách chỉ định một ```instanceId```.
+Vì vậy, các chương trình phụ trợ riêng lẻ chỉ xử lý các sự kiện redis cho các cuộc họp khớp với ```instanceId``` được liên kết
+```ValidateAuthTokenResp``` cũng được chuyển đến các chương trình phụ trợ, điều này cần thiết cho các trường hợp bạn chỉ có chương trình phụ trợ, không có giao diện người dùng
+- Ví dụ như môi trường nhà phát triển không cần quan tâm đến việc mở rộng quy mô.
+
+- Khi bạn sử dụng sudo ```bbb-conf --setip <hostname>``` hoặc ```sudo bbb-conf --restart```, ```bbb-conf``` sẽ chạy ```/etc/bigbluebutton/bbb-conf/apply-config.sh``` giữa lúc tắt máy và khởi động lại quy trình BigBlueButton. Bằng cách này, bạn có thể thay đổi giá trị cấu hình của BigBlueButton hoặc sử dụng một số hàm trợ giúp trong ```apply-lib.sh```. Xem Tự động áp dụng các thay đổi cấu hình khi khởi động lại.
+
+##### web BBB
+
+- Ứng dụng web BigBlueButton là một ứng dụng dựa trên Java được viết bằng Scala. Nó triển khai API BigBlueButton và giữ bản sao trạng thái cuộc họp.
+
+- API BigBlueButton cung cấp sự tích hợp của bên thứ ba (chẳng hạn như plugin BigBlueButtonBN cho Moodle) với điểm cuối để kiểm soát máy chủ BigBlueButton.
+
+- Mọi quyền truy cập vào BigBlueButton đều thông qua một cổng giao diện người dùng (chúng tôi gọi là ứng dụng của bên thứ ba).
+- BigBlueButton tích hợp Moodle, Wordpress, Canvas, Sakai, Matter Most và các phần mềm khác (xem phần tích hợp của bên thứ ba).
+- BigBlueButton đi kèm với giao diện người dùng riêng có tên Greenlight.
+- Khi sử dụng hệ thống quản lý học tập (LMS) như Moodle, giáo viên có thể thiết lập các phòng BigBlueButton trong khóa học của mình và sinh viên có thể truy cập vào các phòng cũng như bản ghi âm của họ.
+
+##### Redis PubSub
+
+- Redis PubSub cung cấp kênh liên lạc giữa các ứng dụng khác nhau chạy trên máy chủ BigBlueButton.
+
+##### Redis DB
+
+- Khi một cuộc họp được ghi lại, tất cả các sự kiện sẽ được lưu trữ trong Redis DB. Khi cuộc họp kết thúc, Bộ xử lý ghi sẽ lấy tất cả các sự kiện đã ghi cũng như các tệp thô (PDF, WAV, FLV) khác nhau để xử lý.
+  
+- BigBlueButton đi kèm với một số bản demo API đơn giản. Bất kể bạn sử dụng giao diện người dùng nào, tất cả đều sử dụng API cơ bản.
+
+##### Ứng dụng akka
+
+- Ứng dụng BigBlueButton là ứng dụng chính tập hợp các ứng dụng khác nhau để mang đến sự cộng tác theo thời gian thực trong cuộc họp. Nó cung cấp danh sách người dùng, trò chuyện, bảng trắng, bài thuyết trình trong cuộc họp.
+
+Dưới đây là sơ đồ về các thành phần khác nhau của Apps Akka:
+
+![image](https://github.com/PhDLeToanThang/ucs/assets/106635733/532fe332-7064-42f2-b880-ab2ecb8d974c)
+
+_Kiến trúc ứng dụng Akka_
+
+Logic nghiệp vụ của cuộc họp nằm trong MeetActor. Đây là nơi lưu trữ thông tin về cuộc họp và là nơi xử lý tất cả tin nhắn cho cuộc họp.
+
+##### FSESL hay còn gọi là FSESL
+
+Chúng tôi đã trích xuất thành phần tích hợp với FreeSWITCH vào ứng dụng riêng của nó. 
+Điều này cho phép những người khác đang sử dụng hệ thống hội nghị thoại ngoài FreeSWITCH dễ dàng tạo sự tích hợp của riêng họ.
+Giao tiếp giữa các ứng dụng và Lớp cổng sự kiện FreeSWITCH (fsels) sử dụng tin nhắn thông qua redis pubsub.
+
+![image](https://github.com/PhDLeToanThang/ucs/assets/106635733/89b2d1c7-5b9e-442c-81fa-46e842005b33)
+
+_Kiến trúc FsESL Akka_
+
+##### FreeSWITCH
+
+Chúng tôi cho rằng FreeSWITCH là một phần mềm tuyệt vời để xử lý âm thanh.
+
+FreeSWITCH cung cấp khả năng hội nghị thoại trong BigBlueButton. Người dùng có thể tham gia hội nghị thoại thông qua tai nghe. Người dùng tham gia thông qua Google Chrome hoặc Mozilla Firefox có thể tận dụng âm thanh chất lượng cao hơn bằng cách kết nối bằng WebRTC. FreeSWITCH cũng có thể được tích hợp với các nhà cung cấp VOIP để những người dùng không thể tham gia bằng tai nghe vẫn có thể gọi bằng điện thoại của họ.
+
+##### Kurento và WebRTC-SFU
+
+Kurento Media Server KMS là một media server triển khai cả mô hình SFU và MCU. KMS chịu trách nhiệm phát trực tuyến webcam, âm thanh chỉ nghe và chia sẻ màn hình. WebRTC-SFU đóng vai trò là bộ điều khiển phương tiện xử lý các cuộc đàm phán và quản lý các luồng phương tiện.
+
+##### Tham gia hội nghị bằng giọng nói
+
+Người dùng có thể tham gia hội nghị thoại (chạy trong FreeSWITCH) từ ứng dụng khách BigBlueButton HTML5 hoặc qua điện thoại. 
+Khi tham gia thông qua ứng dụng khách, người dùng có thể chọn tham gia Micrô hoặc Chỉ nghe và ứng dụng khách BigBlueButton sẽ thực hiện kết nối âm thanh với máy chủ thông qua WebRTC. WebRTC cung cấp cho người dùng âm thanh chất lượng cao với độ trễ thấp hơn.
+
+![image](https://github.com/PhDLeToanThang/ucs/assets/106635733/9d443239-6f77-4329-8579-3a2295be9e2b)
+
+##### Tải lên bản trình bày
+
+Các bản trình bày đã tải lên sẽ trải qua quá trình chuyển đổi để được hiển thị bên trong ứng dụng khách. Khi bản trình bày được tải lên là tài liệu Office, nó cần được chuyển đổi thành PDF bằng LibreOffice. Tài liệu PDF sau đó được chuyển đổi thành đồ họa vector có thể mở rộng (SVG) thông qua bbb-web.
+
+![image](https://github.com/PhDLeToanThang/ucs/assets/106635733/408b6e44-d95b-408c-aa4d-8b93d44a7156)
+
+_Quá trình chuyển đổi sẽ gửi thông báo tiến trình tới máy khách thông qua Redis pubsub_
+
+##### Luồng chuyển đổi bản trình bày
+
+Sơ đồ bên dưới mô tả luồng chuyển đổi bản trình bày. 
+Chúng tôi xem xét cấu hình để bật và tắt chuyển đổi SWF, SVG và PNG.
+
+![Luồng chuyển đổi chung](/img/diagrams/Presentation Conversion Diagram-General Conversion Flow.png)
+
+Sau đó bên dưới luồng chuyển đổi SVG. Nó bao gồm dự phòng chuyển đổi. Đôi khi, chúng tôi phát hiện thấy trình duyệt tải nặng tệp SVG được tạo, chúng tôi sử dụng dự phòng để đặt hình ảnh đã được phân loại vào bên trong tệp SVG và làm cho trình duyệt tải nhẹ.
+
+![Luồng chuyển đổi SVG](/img/diagrams/Presentation Conversion Diagram-SVG Conversion Flow.png)
+
+Tham khảo tài liệu: https://docs.bigbluebutton.org/ 

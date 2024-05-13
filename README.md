@@ -186,3 +186,13 @@ Tham khảo tài liệu: https://docs.bigbluebutton.org/
 
 # Phần 3: Lợi ích ứng dụng UCs kiểu On-prem thành Private Cloud Services:
 
+1. BBB có thể tích hợp với Moodle để quản lý và tương tác nội dung dạy học:
+2.     Trên LMS (Quản lý khoá học)  vs
+3.     LCMS (Quản lý nội dung số).
+4.     Quản lý đầu sách, file điện tử của Giảng viên, tác giả soạn tài liệu cá nhân trên máy cá nhân.
+5.     Quản lý đầu sách, file điện tử của nhóm Giảng viên, nhóm tác giả soạn tài liệu sau khi đã hiệu đính, chỉnh duyệt lưu trên máy chủ của Nhà Trường/ Tỏ chức phòng ban.
+6.     Quản lý đầu sách, files điện tử đã được Ban lãnh đạo Nhà Trường học cấp Trưởng Khoa/Phó khoa duyệt lưu trên hệ thống do Thủ Thư Quản lý Thư viện phụ trách máy chủ WWeb Calibre.
+7.     Các bộ phận như Kinh Doanh, Thủ Thư, Luật sư quản lý Xuất bản sách, Kế Toán quản lý Chi phí - Doanh thu - Tồn kho và báo cáo kết quả Kinh Doanh sách số của Nhà Trường / Doanh nghiệp phối hợp Quản lý sách số trên Cổng Thương mại điện tử Kinh Doanh sách số.
+8.    Tích hợp với ITSAM giúp Chat, Bot, AI Chat, chuyển đổi Ticket để hỗ trợ Khách hàng thuê dịch vụ hoặc giúp đội Chăm sóc khách hàng dịch vụ thu nhận thông tin hỗ trợ.
+
+![image](https://github.com/PhDLeToanThang/ucs/assets/106635733/bcb8272f-9ef0-4a1c-808d-00bbb5d5913d)

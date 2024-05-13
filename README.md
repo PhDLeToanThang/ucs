@@ -4,6 +4,11 @@
 
 - Phiên bản 2024: 2.7.7:
 
+* Yêu  cầu:*
+- Máy chủ Ubuntu linux version 20.04 LTS,
+- Có quản lý DNS public và kiểm soát các Firewall Gateway, Haproxy Layer 3,4,7.
+- Hoạt động quản lý và vận hành dưới tên miền public, có HTTPs port 80,443. 
+
 Bước 1: Sửa và cài các tools cho Ubuntu có giao diện và xrdp remote 3389:
 
 wget https://raw.githubusercontent.com/PhDLeToanThang/ucs/master/2.7.7/s1_fix_ubuntu.sh && sudo bash s1_fix_ubuntu.sh
@@ -177,3 +182,7 @@ Sau đó bên dưới luồng chuyển đổi SVG. Nó bao gồm dự phòng chu
 ![Luồng chuyển đổi SVG](/img/diagrams/Presentation Conversion Diagram-SVG Conversion Flow.png)
 
 Tham khảo tài liệu: https://docs.bigbluebutton.org/ 
+
+
+# Phần 3: Lợi ích ứng dụng UCs kiểu On-prem thành Private Cloud Services:
+

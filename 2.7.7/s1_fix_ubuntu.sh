@@ -30,11 +30,12 @@ sudo systemctl enable xrdp # start xrdp on system start
 sudo ufw allow 3389
 
 # (dải ipv4 cho guacamole Server tới con VM cần điều khiển) 
-sudo ufw allow from 192.168.100.0/24 to any port 3389   
+#sudo ufw allow from 192.168.100.0/24 to any port 3389   
 
 #Reboot system:  (không cần thiết)
 #sudo reboot
 
+sudo apt install wget -y
 sudo apt install ufw -y
 sudo apt install net-tools -y
 sudo apt install gparted -y

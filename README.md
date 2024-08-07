@@ -2,7 +2,11 @@
 
 ****DEPLOY INSTALL a IT UCS SERVER + a Turn Recording Vioce Video Media Server****
 
-- Phiên bản 2024: 2.7.7:
+- Phiên bản mới 2024: 2.7.11 (update 6.2024): Tham khảo:  https://docs.bigbluebutton.org/new-features/
+
+**Lưu ý: Note that BigBlueButton 2.7.11 runs on Ubuntu Focal (20.04)**
+
+- Phiên bản 2024: 2.7.7 (old):
 
 ## Yêu cầu:
 
@@ -12,11 +16,11 @@
 
 Bước 1: Sửa và cài các tools cho Ubuntu có giao diện và xrdp remote 3389:
 
-wget https://raw.githubusercontent.com/PhDLeToanThang/ucs/master/2.7.7/s1_fix_ubuntu.sh && sudo bash s1_fix_ubuntu.sh
+wget https://raw.githubusercontent.com/PhDLeToanThang/ucs/master/2.7.11/s1_fix_ubuntu.sh && sudo bash s1_fix_ubuntu.sh
 
 **Lưu ý:** Đây là bản cài DNS Public và On-prem nên trước khi triển khai UCs này bạn phải quản lý được.
 - Ubuntu linux 20.04 LTS cần cài dạng Ubuntu Server, nếu cài Ubuntu minimum sẽ cần cài bổ sung: Dockers hoặc Containers)
-- Gói cài BBB 2.7.7 hiện này chỉ support Ubuntu 20.04 LTS.
+- Gói cài BBB 2.7.11 hiện này chỉ support Ubuntu 20.04 LTS.
 - DNS public (thuê tên miền và Quản lý các bản ghi public).
 - DNS Local (Quản trị DNS Server và FWGW / Haproxy Local).
 - Nếu có Haproxy / LBN người Quản trị sẽ cấu hình Config của LBN/ Haproxy cho phép Proxy hoặc NAT Forward từ Firewall.
@@ -29,9 +33,9 @@ DNS public:
 DNS Local:
     DNS Server Local ---> Ipv4 DNS Local: 192.168.1.20 (iPAM/AD-DC Platform) ---> IPv4 DNS A (host): ucs1.yourdomain.local: 192.168.1.13 (Your UCs Server)---> 
 
-Bước 2: Cài Các thư viện cho Big Blue Button (2.7.7):
+Bước 2: Cài Các thư viện cho Big Blue Button (2.7.11):
 
-wget https://raw.githubusercontent.com/PhDLeToanThang/ucs/master/2.7.7/s2_setup_bbb.sh && sudo bash s2_setup_bbb.sh 
+wget https://raw.githubusercontent.com/PhDLeToanThang/ucs/master/2.7.11/s2_setup_bbb.sh && sudo bash s2_setup_bbb.sh 
 
 # Phần 2. Kiến trúc hạ tầng - Kết nối - Chuyển đổi nội dung số:
 
@@ -63,7 +67,7 @@ Máy khách HTML5 là một trang duy nhất, ứng dụng web đáp ứng đư�
 
 4.1.4. Máy chủ HTML5 nằm phía sau nginx.
 
-4.1.4.1. Máy chủ HTML5 được xây dựng dựa trên
+4.1.4.1. Máy chủ HTML5 được xây dựng dựa trên.
 
 4.1.4.2. Meteor.js trong ECMA2015 để liên lạc giữa máy khách và máy chủ.
 

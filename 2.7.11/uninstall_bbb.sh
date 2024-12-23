@@ -61,7 +61,14 @@ apt-key del $(apt-key list | awk 'NR=='`expr $(apt-key list | grep --line-number
 apt-key del $(apt-key list | awk 'NR=='`expr $(apt-key list | grep --line-number --regexp "Docker" | cut --fields 1 --delimiter ":") - 1`'{print;exit}' | sed -e 's/ //g')
 
 # delete leftovers like logs and other files
-rm -rf /var/bigbluebutton /opt/freeswitch /usr/share/etherpad-lite /usr/local/bigbluebutton /etc/bigbluebutton  /usr/share/meteor /usr/share/bbb-libreoffice-conversion /usr/share/bbb-web /etc/systemd/system/bbb-webrtc-sfu.service.d /var/tmp/bbb-kms-last-restart.txt /var/log/bigbluebutton /var/log/kurento-media-server /var/log/bbb-apps-akka /var/log/bbb-fsesl-akka /var/log/bbb-webrtc-sfu /var/lib/kurento /var/kurento /var/log/mongodb /etc/kurento /run/bbb-fsesl-akka ./run/bbb-apps-akka /etc/systemd/system/multi-user.target.wants/bbb-web.service /etc/systemd/system/multi-user.target.wants/bbb-rap-resque-worker.service /etc/systemd/system/multi-user.target.wants/bbb-rap-starter.service ~/.bundle/cache
+#rm -rf /var/bigbluebutton    #Note: if you still have recording, replay audio-video -caption -ưhiteboard - presenteration them not use delete /var/bigbluebutton folders.
+rm -rf /opt/freeswitch /usr/share/etherpad-lite /usr/local/bigbluebutton /etc/bigbluebutton  
+rm -rf /usr/share/meteor /usr/share/bbb-libreoffice-conversion 
+rm -rf /usr/share/bbb-web 
+rm -rf /etc/systemd/system/bbb-webrtc-sfu.service.d /var/tmp/bbb-kms-last-restart.txt /var/log/bigbluebutton /var/log/kurento-media-server 
+rm -rf /var/log/bbb-apps-akka /var/log/bbb-fsesl-akka /var/log/bbb-webrtc-sfu /var/lib/kurento /var/kurento /var/log/mongodb /etc/kurento /run/bbb-fsesl-akka ./run/bbb-apps-akka 
+rm -rf /etc/systemd/system/multi-user.target.wants/bbb-web.service 
+rm -rf /etc/systemd/system/multi-user.target.wants/bbb-rap-resque-worker.service /etc/systemd/system/multi-user.target.wants/bbb-rap-starter.service ~/.bundle/cache
 
 # delete user related content
 deluser bigbluebutton 

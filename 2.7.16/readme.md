@@ -1,3 +1,4 @@
+```
 Reading package lists... Done
 Warning: apt-key output should not be parsed (stdout is not a terminal)
 Warning: apt-key output should not be parsed (stdout is not a terminal)
@@ -1670,15 +1671,15 @@ BigBlueButton Server 2.7.16 (804)
                               port: 80, [::]:80127.0.0.1:82 http2 proxy_protocol, [::1]:82 http2127.0.0.1:81 proxy_protocol, [::1]:81
 
 /opt/freeswitch/etc/freeswitch/vars.xml (FreeSWITCH)
-                       local_ip_v4: 192.168.100.13
-                   external_rtp_ip: 222.252.99.62
-                   external_sip_ip: 222.252.99.62
+                       local_ip_v4: 19x.16x.1xx.13
+                   external_rtp_ip: 2xx.2xx.9x.6x
+                   external_sip_ip: 2xx.2xx.9x.6x
 
 /opt/freeswitch/etc/freeswitch/sip_profiles/external.xml (FreeSWITCH)
                         ext-rtp-ip: $${external_rtp_ip}
                         ext-sip-ip: $${external_sip_ip}
-                        ws-binding: 222.252.99.62:5066
-                       wss-binding: 222.252.99.62:7443
+                        ws-binding: 2xx.2xx.9x.6x:5066
+                       wss-binding: 2xx.2xx.9x.6x:7443
 
 UDP port ranges
 
@@ -1693,16 +1694,16 @@ UDP port ranges
                             ffmpeg: 4.2.7-0ubuntu0.1
 
 /usr/share/bigbluebutton/nginx/sip.nginx (sip.nginx)
-                        proxy_pass: 222.252.99.62
+                        proxy_pass: 2xx.2xx.9x.6x
                           protocol: http
 
 /usr/local/bigbluebutton/bbb-webrtc-sfu/config/default.yml (bbb-webrtc-sfu)
 /etc/bigbluebutton/bbb-webrtc-sfu/production.yml (bbb-webrtc-sfu - override)
-    mediasoup.webrtc.*.announcedIp: 222.252.99.62
-  mediasoup.plainRtp.*.announcedIp: 222.252.99.62
-                        kurento.ip: 222.252.99.62
+    mediasoup.webrtc.*.announcedIp: 2xx.2xx.9x.6x
+  mediasoup.plainRtp.*.announcedIp: 2xx.2xx.9x.6x
+                        kurento.ip: 2xx.2xx.9x.6x
                        kurento.url: ws://127.0.0.1:8888/kurento
-                 freeswitch.sip_ip: 222.252.99.62
+                 freeswitch.sip_ip: 2xx.2xx.9x.6x
                   recordingAdapter: Kurento
                recordScreenSharing: true
                      recordWebcams: true
@@ -1724,3 +1725,4 @@ UDP port ranges
 
 
 # Potential problems described below
+```

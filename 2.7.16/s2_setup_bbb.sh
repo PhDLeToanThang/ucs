@@ -27,6 +27,8 @@ if [ "$run" == n ] ; then
 else
 
 #Step 3. 
-wget -qO- https://raw.githubusercontent.com/bigbluebutton/bbb-install/v2.7.x-release/bbb-install.sh | bash -s -- -w -v focal-270 -s $FQDN -e $emailssl -g
-
+wget -qO- https://raw.githubusercontent.com/bigbluebutton/bbb-install/v2.7.x-release/bbb-install.sh | bash -s -- -w -v focal-270-2.7.16 -s $FQDN -e $emailssl -g
+# Passing -v focal-270 to https://raw.githubusercontent.com/bigbluebutton/bbb-install/v2.7.x-release/bbb-install.sh will always install the latest released BigBlueButton 2.7 version.
+# If for some reason you would like to install this specific release, pass -v focal-270-2.7.16.
+# We still recommend using -v focal-270 as this repository is continually updated with each BigBlueButton 2.7 release.
 fi

@@ -1,11 +1,11 @@
 ######################################################################################
-#    What's new BBB 2.7.11 
+#    What's new BBB 2.7.16 
 #		here is a short list of main changes done in this version: https://github.com/bigbluebutton/bigbluebutton/releases
-# This iteration of BigBlueButton 2.7.11 contains multiple improvements on the client side, a patch for breakout rooms 
+# This iteration of BigBlueButton 2.7.16 contains multiple improvements on the client side, a patch for breakout rooms 
 # creation specifically affecting MacOS Chrome users, added support for extra locales for transcription and other improvements.
 # We welcome any feedback about this release on our bigbluebutton-dev mailing list
 #
-# Note that BigBlueButton 2.7.11 runs on Ubuntu Focal (20.04).
+# Note that BigBlueButton 2.7.16 runs on Ubuntu Focal (20.04).
 # https://docs.bigbluebutton.org/new-features/
 #
 ######################################################################################
